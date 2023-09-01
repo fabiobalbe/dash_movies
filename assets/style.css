@@ -1,0 +1,30 @@
+body{
+    background-color: #F2F2F2;
+    margin-top: 0%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.title_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9038D5;
+    height: 50px;
+}
+
+.title_text{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.flex_display{
+    display: flex;
+}
