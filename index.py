@@ -5,8 +5,8 @@ from dash.dependencies import Output, Input
 import pandas as pd
 
 font_awesome1 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'
-# font_awesome2 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css'
-# font_awesome3 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css'
+font_awesome2 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/regular.min.css'
+font_awesome3 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css'
 meta_tags = [{'name': 'viewport', 'content': 'width=device-width'}]
 external_stylesheets = [font_awesome1, meta_tags]
 
@@ -77,6 +77,25 @@ app.layout = html.Div([
 
 @app.callback(Output('calculations', 'children'), [Input('select_year', 'value')])
 def display_data(select_year):
+
+    df1 = df.groupby(['genre', 'Year'])['total_gross'].sum().reset_index()
+    df2 = df1[(df1['genre'] == 'Musical') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df3 = df1['total_gross'].sum()
+    df4 = (df2 / df3) * 100
+
+    df5 = df1[(df1['genre'] == 'Comedy') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df6 = (df5 / df3) * 100
+
+    df7 = df1[(df1['genre'] == 'Adventure') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df8 = (df7 / df3) * 100
+
+    df9 = df1[(df1['genre'] == 'Romantic Comedy') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df10 = (df9 / df3) * 100
+
     return [
         html.Table([
 
@@ -90,6 +109,50 @@ def display_data(select_year):
                     html.Th('% Share' + ' ' + str(select_year))
 
                 ], className='header_hover')
+
+            ]),
+
+            html.Tbody([
+
+                html.Tr([
+
+                    html.Td('Musical'),
+                    html.Td(html.I(className='fa fa-music',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df2)),
+                    html.Td('{0:,.1f} %'.format(df4))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Comedy'),
+                    html.Td(html.I(className='fa fa-masks-theater',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df5)),
+                    html.Td('{0:,.1f} %'.format(df6))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Adventure'),
+                    html.Td(html.I(className='fa-brands fa-space-awesome',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df7)),
+                    html.Td('{0:,.1f} %'.format(df8))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Romantic Comedy'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df9)),
+                    html.Td('{0:,.1f} %'.format(df10))
+
+                ], className="hover_only_row")
 
             ])
 
