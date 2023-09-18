@@ -53,3 +53,24 @@ body{
     margin-bottom: 15px;
     width: calc(100%-40px);
 }
+
+.table_style{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table_style Thead{
+    background-color: #006FE6;
+    color: white;
+    text-align: left;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+.table_style Thead, .table_style Th, .table_style Td{
+    border: 1px solid #ddd;
+    padding: 7px;
+}
+.header_hover:hover{
+    background-color: #9038D5;
+    color: white;
+}

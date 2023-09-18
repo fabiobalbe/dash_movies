@@ -18,9 +18,11 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div([
 
     html.Div([
+
         html.Div([
             html.H5('Movie Data Analyzer', className='title_text')
         ], className='title_container twelve columns')
+
     ], className='row flex_display'),
 
     html.Div([
@@ -35,16 +37,21 @@ app.layout = html.Div([
                          'font-size': '17px',
                          'text-align': 'justify',
                          'margin-bottom': '20px'
-                         })
+                         }),
+
+            html.Div(id='calculations')
 
         ], className='create_container six columns',
             style={'margin-top': '10px',
                    'margin-bottom': '10px'}),
 
         html.Div([
+
             html.Div([
+
                 html.P('Year:', className='fix_label', style={
                        'color': 'black', 'margin-top': '15px'}),
+
                 dcc.Slider(id='select_year',
                            min=year_list[0],
                            max=year_list[-1],
@@ -56,7 +63,9 @@ app.layout = html.Div([
                            marks={str(yrs): str(yrs) for yrs in range(
                                year_list[0], year_list[-1], 2)},
                            className='slider_component')
+
             ], className='container_slider')
+
         ], className='create_container six columns',
             style={'margin-top': '10px',
                    'margin-bottom': '10px'})
@@ -64,6 +73,30 @@ app.layout = html.Div([
     ], className='row flex_display')
 
 ], className='mainContainer', style={'display': 'flex', 'flex-direction': 'column'})
+
+
+@app.callback(Output('calculations', 'children'), [Input('select_year', 'value')])
+def display_data(select_year):
+    return [
+        html.Table([
+
+            html.Thead([
+
+                html.Tr([
+
+                    html.Th('Genre'),
+                    html.Th('Symbol'),
+                    html.Th('Gross Sales ($)' + ' ' + str(select_year)),
+                    html.Th('% Share' + ' ' + str(select_year))
+
+                ], className='header_hover')
+
+            ])
+
+        ], className='table_style')
+
+    ]
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
