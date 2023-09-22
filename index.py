@@ -96,6 +96,38 @@ def display_data(select_year):
         df1['Year'] == select_year)]['total_gross'].sum()
     df10 = (df9 / df3) * 100
 
+    df11 = df1[(df1['genre'] == 'Western') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df12 = (df11 / df3) * 100
+
+    df13 = df1[(df1['genre'] == 'Action') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df14 = (df13 / df3) * 100
+
+    df15 = df1[(df1['genre'] == 'Drama') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df16 = (df15 / df3) * 100
+
+    df17 = df1[(df1['genre'] == 'Triller/Suspense') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df18 = (df17 / df3) * 100
+
+    df19 = df1[(df1['genre'] == 'Black Comedy') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df20 = (df19 / df3) * 100
+
+    df21 = df1[(df1['genre'] == 'Documentary') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df22 = (df21 / df3) * 100
+
+    df23 = df1[(df1['genre'] == 'Horror') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df24 = (df23 / df3) * 100
+
+    df25 = df1[(df1['genre'] == 'Concert/Performance') & (
+        df1['Year'] == select_year)]['total_gross'].sum()
+    df26 = (df25 / df3) * 100
+
     return [
         html.Table([
 
@@ -152,7 +184,88 @@ def display_data(select_year):
                     html.Td('$ {0:,.0f}'.format(df9)),
                     html.Td('{0:,.1f} %'.format(df10))
 
-                ], className="hover_only_row")
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Western'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df11)),
+                    html.Td('{0:,.1f} %'.format(df12))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Action'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df13)),
+                    html.Td('{0:,.1f} %'.format(df14))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Drama'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df15)),
+                    html.Td('{0:,.1f} %'.format(df16))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Triller/Suspense'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df17)),
+                    html.Td('{0:,.1f} %'.format(df18))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Black Comedy'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df19)),
+                    html.Td('{0:,.1f} %'.format(df20))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Documentary'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df21)),
+                    html.Td('{0:,.1f} %'.format(df22))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Horror'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df23)),
+                    html.Td('{0:,.1f} %'.format(df24))
+
+                ], className="hover_only_row"),
+
+                html.Tr([
+
+                    html.Td('Concert/Performance'),
+                    html.Td(html.I(className='fa-solid fa-face-kiss-wink-heart',
+                            style={'font-size': '150%'})),
+                    html.Td('$ {0:,.0f}'.format(df25)),
+                    html.Td('{0:,.1f} %'.format(df26))
+
+                ], className="hover_only_row"),
+
 
             ])
 
