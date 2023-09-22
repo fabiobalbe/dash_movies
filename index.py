@@ -2,6 +2,7 @@ import dash
 from dash import html
 from dash import dcc
 from dash.dependencies import Output, Input
+import plotly.graph_objects as go
 import pandas as pd
 
 font_awesome1 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css'
@@ -39,7 +40,11 @@ app.layout = html.Div([
                          'margin-bottom': '20px'
                          }),
 
-            html.Div(id='calculations')
+            html.Div(id='calculations'),
+
+            dcc.Graph(id='bar_graph',
+                      config={'displayModeBar': 'hover'},
+                      className='bar_graph_border')
 
         ], className='create_container six columns',
             style={'margin-top': '10px',
@@ -272,6 +277,32 @@ def display_data(select_year):
         ], className='table_style')
 
     ]
+
+
+@app.callback(Output('bar_graph', 'figure'), [Input('select_year', 'value')])
+def display_data(select_year):
+
+    df1 = df.groupby(['genre', 'Year'])['total_gross'].sum().reset_index()
+    df2 = df1[df1['Year'] == select_year]
+
+    return {'data': [go.Bar(
+        x=df2['genre'],
+        y=df2['total_gross'],
+        text=df2['total_gross'],
+        texttemplate='%{text:,.2s}',
+        textposition='outside',
+        marker=dict(color='#38D56F'),
+        textfont=dict(family='sans-serif', size=12, color='black'),
+        hoverinfo='text',
+        hovertext='<b>Year</b>: ' + df2['Year'].astype(str) + '<br>' +
+                  '<b>Gross Sales</b>: $' +
+        [f'{x:,.0f}' for x in df2['total_gross']]
+    )],
+        'layout': go.Layout(
+            plot_bgcolor='white',
+            paper_bgcolor='white'
+    ),
+    }
 
 
 if __name__ == '__main__':
