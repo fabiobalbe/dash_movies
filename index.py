@@ -271,7 +271,6 @@ def display_data(select_year):
 
                 ], className="hover_only_row"),
 
-
             ])
 
         ], className='table_style')
@@ -297,11 +296,31 @@ def display_data(select_year):
         hovertext='<b>Year</b>: ' + df2['Year'].astype(str) + '<br>' +
                   '<b>Gross Sales</b>: $' +
         [f'{x:,.0f}' for x in df2['total_gross']]
+
     )],
+
         'layout': go.Layout(
             plot_bgcolor='white',
-            paper_bgcolor='white'
+            paper_bgcolor='white',
+            title={'text': '<b>Gross Sales in' +
+                   ' ' + str(select_year) + '</b>', 'y': 0.98, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'},
+            titlefont={'color': 'black', 'size': 17},
+            hovermode='closest',
+            margin=dict(t=30, r=0),
+            xaxis=dict(showline=True,
+                       showgrid=False,
+                       showticklabels=True,
+                       linecolor='black',
+                       linewidth=1,
+                       ticks='outside',
+                       tickfont=dict(family='Arial', size=12, color='black')),
+            yaxis=dict(title='<b>Gross Sales [$]</b>',
+                       visible=True,
+                       color='black',
+                       showline=False,
+                       showgrid=True)
     ),
+
     }
 
 
