@@ -69,7 +69,12 @@ app.layout = html.Div([
                                year_list[0], year_list[-1], 2)},
                            className='slider_component')
 
-            ], className='container_slider')
+            ], className='container_slider'),
+
+            dcc.Graph(id='pie_graph',
+                      config={'displayModeBar': 'hover'},
+                      className='pie_graph_border')
+
 
         ], className='create_container six columns',
             style={'margin-top': '10px',
@@ -326,6 +331,48 @@ def display_data(select_year):
                        showgrid=True)
     ),
 
+    }
+
+
+@app.callback(Output('pie_graph', 'figure'), [Input('select_year', 'value')])
+def display_data(select_year):
+
+    df1 = df.groupby(['mpaa_rating', 'Year'])[
+        'total_gross'].sum().reset_index()
+    df2 = df1[df1['Year'] == select_year]
+
+    return {
+        'data': [go.Pie(
+            labels=df2['mpaa_rating'],
+            values=df2['total_gross'],
+            hoverinfo='label+value+percent',
+            textinfo='label+value',
+            textfont=dict(size=13),
+            texttemplate='%{label}:%{value:,.0f} <br>(%{percent})',
+            textposition='auto',
+            rotation=160
+
+        )],
+        'layout': go.Layout(
+            plot_bgcolor='white',
+            paper_bgcolor='white',
+            title={'text': '<b>Sales by Rating in ' + str(select_year),
+                   'y': 0.97,
+                   'x': 0.5,
+                   'xanchor': 'center',
+                   'yanchor': 'top'},
+            titlefont={'color': 'rgb(50,50,50)', 'size': 15},
+            hovermode='x',
+            legend={
+                'orientation': 'h',
+                'bgcolor': '#F2F2F2',
+                'xanchor': 'center',
+                'yanchor': 'bottom',
+                'x': 0.5,
+                'y': -0.2
+            }
+
+        )
     }
 
 
