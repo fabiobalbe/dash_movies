@@ -92,3 +92,42 @@ body{
     border: 1px solid #CCC;
     margin-top: 20px;
 }
+
+.text_container{
+    margin-top: 20px;
+}
+
+.text_container1{
+    margin-top: 10px;
+}
+
+.text_container2{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.container_text_border{
+    border: 1px solid #CCC;
+    margin-top: 20px;
+}
+
+.box_style{
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 35px;
+}
+
+.style1{
+    width: 30%;
+    background-color: #EEE;
+    font-weight: bold;
+}
+
+.style2{
+    width: 70%;
+    background-color: white;
+}
+
+.box_style Td{
+    border: 1px solid #CCC;
+    padding: 4px;
+}
