@@ -423,7 +423,7 @@ def display_data(select_year):
             },
             titlefont={"color": "black", "size": 17},
             hovermode="closest",
-            margin=dict(t=30, r=0),
+            margin=dict(t=30, r=60),
             xaxis=dict(
                 showline=True,
                 showgrid=False,

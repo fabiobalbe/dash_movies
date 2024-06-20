@@ -403,7 +403,11 @@ there.
 @media (min-width: 400px) {}
 
 /* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {}
+@media (max-width: 550px) {
+  .flex_display{
+    display: block !important;
+  }
+}
 
 /* Larger than tablet */
 @media (min-width: 750px) {}

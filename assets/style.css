@@ -131,3 +131,36 @@ body{
     border: 1px solid #CCC;
     padding: 4px;
 }
+
+::-webkit-scrollbar{
+    width: 5px !important;
+    display: block !important;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #9038D5 !important;
+    display: block !important;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #006FE6 !important;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: lightskyblue !important;
+}
+
+.rc-slider-dot-active{
+    border-color: #9038D5;
+    border: 2px solid #9038D5;
+}
+
+.rc-slider-handle{
+    border-color: #9038D5;
+    background-color: #9038D5;
+}
+
+.rc-slider-handle:hover{
+    border-color: #006FE6;
+    background-color: #006FE6
+}
