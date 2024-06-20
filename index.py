@@ -21,6 +21,7 @@ df = pd.read_csv("jupyternotebook/update.csv")
 year_list = list(df["Year"].unique())
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 app.layout = html.Div(
     [
