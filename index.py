@@ -17,7 +17,7 @@ font_awesome3 = (
 meta_tags = [{"name": "viewport", "content": "width=device-width"}]
 external_stylesheets = [font_awesome1, meta_tags]
 
-df = pd.read_csv("jupyternotebook/update.csv")
+df = pd.read_csv("data-movies.csv")
 year_list = list(df["Year"].unique())
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
